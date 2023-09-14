@@ -3,8 +3,11 @@
 
 {% block content %}
 
-<div>
-    <p>news</p>
-</div>
+{% for article in object_list %}
+        <article>
+            <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+            <p>{{ article.description }}</p>
+        </article>
+    {% endfor %}
 
 {% endblock %}

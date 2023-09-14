@@ -1,7 +1,15 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
-def news_page(request):
+from .models import Article
 
-    return render(request, 'news/news_page.html')
+class ArticlesListView(ListView):
+    model = Article
+    template_name = "news/news_page.html"
+
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = "news/news_details.html"
 
 # Create your views here.

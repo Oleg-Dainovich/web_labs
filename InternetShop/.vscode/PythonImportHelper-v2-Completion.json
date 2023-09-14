@@ -192,6 +192,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -241,6 +257,14 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -337,6 +361,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -567,6 +599,55 @@
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "ArticleDetailView",
+        "importPath": "news.views",
+        "description": "news.views",
+        "isExtraImport": true,
+        "detail": "news.views",
+        "documentation": {}
+    },
+    {
+        "label": "ArticlesListView",
+        "importPath": "news.views",
+        "description": "news.views",
+        "isExtraImport": true,
+        "detail": "news.views",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
         "documentation": {}
     },
     {
@@ -980,6 +1061,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "news.migrations.0001_initial",
+        "description": "news.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Article',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('title', models.CharField(max_length=255)),",
+        "detail": "news.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "NewsConfig",
         "kind": 6,
         "importPath": "news.apps",
@@ -989,12 +1079,12 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
-        "kind": 5,
-        "importPath": "news.urls",
-        "description": "news.urls",
-        "peekOfCode": "app_name = \"news\"\nurlpatterns = [\n    path('', views.news_page, name='news'),\n]",
-        "detail": "news.urls",
+        "label": "Article",
+        "kind": 6,
+        "importPath": "news.models",
+        "description": "news.models",
+        "peekOfCode": "class Article(models.Model):\n    title = models.CharField(max_length=255)\n    description = models.CharField(max_length=255)\n    content = models.TextField()\n    created_at = models.DateTimeField(default=timezone.now)\n    def __str__(self):\n        return self.title\n    def get_absolute_url(self):\n        return reverse(\"news_details\", args=[str(self.id)])\n# Create your models here.",
+        "detail": "news.models",
         "documentation": {}
     },
     {
@@ -1002,16 +1092,25 @@
         "kind": 5,
         "importPath": "news.urls",
         "description": "news.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.news_page, name='news'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"<int:pk>/\", ArticleDetailView.as_view(), name=\"news_details\"),\n    path(\"\", ArticlesListView.as_view(), name=\"news_page\"),\n]",
         "detail": "news.urls",
         "documentation": {}
     },
     {
-        "label": "news_page",
-        "kind": 2,
+        "label": "ArticlesListView",
+        "kind": 6,
         "importPath": "news.views",
         "description": "news.views",
-        "peekOfCode": "def news_page(request):\n    return render(request, 'news/news_page.html')\n# Create your views here.",
+        "peekOfCode": "class ArticlesListView(ListView):\n    model = Article\n    template_name = \"news/news_page.html\"\nclass ArticleDetailView(DetailView):\n    model = Article\n    template_name = \"news/news_details.html\"\n# Create your views here.",
+        "detail": "news.views",
+        "documentation": {}
+    },
+    {
+        "label": "ArticleDetailView",
+        "kind": 6,
+        "importPath": "news.views",
+        "description": "news.views",
+        "peekOfCode": "class ArticleDetailView(DetailView):\n    model = Article\n    template_name = \"news/news_details.html\"\n# Create your views here.",
         "detail": "news.views",
         "documentation": {}
     },
@@ -1112,6 +1211,15 @@
         "description": "shop.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(db_index=True, max_length=200)),",
         "detail": "shop.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "shop.migrations.0002_alter_product_options",
+        "description": "shop.migrations.0002_alter_product_options",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('shop', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='product',\n            options={'ordering': ('name',), 'verbose_name': 'Товар', 'verbose_name_plural': 'Товары'},\n        ),\n    ]",
+        "detail": "shop.migrations.0002_alter_product_options",
         "documentation": {}
     },
     {
